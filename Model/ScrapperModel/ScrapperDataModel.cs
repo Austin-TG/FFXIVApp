@@ -40,6 +40,25 @@ namespace FFXIVApp.Model.ScrapperModel
         public bool Dyable { get; set; }
     }
 
+    public class Effects_DataClass
+    {
+        // Main Stats
+        public string? Strength { get; set; }
+        public string? Intelligence { get; set; }
+        public string? Dexterity { get; set; }
+        public string? Mind { get; set; }
+
+        // Bonus Stats
+        public string? Direct_Hit_Rate { get; set; }
+        public string? Vitality { get; set; }
+        public string? Determination { get; set; }
+        public string? Critical_hit { get; set; }
+        public string? Skill_Speed { get; set; }
+        public string? Spell_Speed { get; set; }
+        public string? Piety { get; set; }
+        public string? Tenacity { get; set; }
+    }
+
     public class ArmsToolsArmorAccessories_DataClass
     {
         public string? TypeClassification { get; set; }
@@ -61,27 +80,9 @@ namespace FFXIVApp.Model.ScrapperModel
         public CraftingRepairs_DataClass? Crafting_repairs { get; set; }
         public bool Advanced_melding { get; set; }
         public bool Available_purchase { get; set; }
-        public bool Market_prohitibited { get; set; }
+        public bool Purchasable { get; set; }
+        public bool Sellable { get; set; }
         public List<string>? Aquired_from { get; set; }
-    }
-
-    public class Effects_DataClass
-    {
-        // Main Stats
-        public string? Strength { get; set; }
-        public string? Intelligence { get; set; }
-        public string? Dexterity { get; set; }
-        public string? Mind { get; set; }
-
-        // Bonus Stats
-        public string? Direct_Hit_Rate { get; set; }
-        public string? Vitality { get; set; }
-        public string? Determination { get; set; }
-        public string? Critical_hit { get; set; }
-        public string? Skill_Speed { get; set; }
-        public string? Spell_Speed { get; set; }
-        public string? Piety { get; set; }
-        public string? Tenacity { get; set; }
     }
 
     public class MedicineMeals_DataClass
@@ -89,17 +90,20 @@ namespace FFXIVApp.Model.ScrapperModel
         public string? TypeClassification { get; set; }
         public string? Id { get; set; }
         public string? Name { get; set; }
-        public bool Unique { get; set; }
+        public int Item_level { get; set; }
         public bool Tradeable { get; set; }
         public bool Company_crests { get; set; }
         public bool Glamour_dresser { get; set; }
         public bool Armoire { get; set; }
+        public bool Available_purchase { get; set; }
+        public bool Market_prohitibited { get; set; }
         public int Recast { get; set; }
         public Effects_DataClass? Effects { get; set; }
         public string? Description { get; set; }
+        public bool Purchasable { get; set; }
+        public bool Sellable { get; set; }
         public int? SalePrice { get; set; }
         public int? SellsPrice { get; set; }
-        public bool Market_prohitibited { get; set; }
         public List<string>? ObtainedFrom { get; set; }
     }
 
@@ -114,6 +118,8 @@ namespace FFXIVApp.Model.ScrapperModel
         public bool Glamour_dresser { get; set; }
         public bool Armoire { get; set; }
         public string? Description { get; set; }
+        public bool Purchasable { get; set; }
+        public bool Sellable { get; set; }
         public int? SalePrice { get; set; }
         public int? SellsPrice { get; set; }
         public bool Market_prohitibited { get; set; }
@@ -170,5 +176,14 @@ namespace FFXIVApp.Model.ScrapperModel
     public partial class ScrapperData
     {
         public Items? Items { get; set; }
+
+        private string? _activeCategory;
+
+        public string? ActiveCategory
+        {
+            get { return _activeCategory; }
+            set { _activeCategory = CheckActiveCategory(value!); }
+        }
+
     }
 }
